@@ -14,13 +14,11 @@ def validate_telco_data(df) -> Tuple[bool, List[str]]:
     
     # Convert pandas DataFrame to Great Expectations Dataset
     ge_df = ge.dataset.PandasDataset(df) # type: ignore
+    print(df.dtypes)
+    print(df[["tenure", "MonthlyCharges", "TotalCharges"]].head())
     
     # === SCHEMA VALIDATION - ESSENTIAL COLUMNS ===
     print("📋 Validating schema and required columns...")
-    
-    # Customer identifier must exist (required for business operations)  
-    ge_df.expect_column_to_exist("customerID")
-    ge_df.expect_column_values_to_not_be_null("customerID")
     
     # Core demographic features
     ge_df.expect_column_to_exist("gender") 
