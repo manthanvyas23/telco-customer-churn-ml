@@ -33,7 +33,7 @@ gradio
 graphene==3.4.3
 graphql-core==3.2.6
 graphql-relay==3.2.0
-great_expectations==1.5.8
+great_expectations==0.18.21
 gunicorn==22.0.0
 h11==0.16.0
 idna==3.10
@@ -108,6 +108,7 @@ sqlparse==0.5.3
 stack-data==0.6.3
 starlette==0.38.6
 statsmodels==0.14.5
+setuptools==80.10.2
 threadpoolctl==3.6.0
 toolz==1.0.0
 tornado==6.5.2
