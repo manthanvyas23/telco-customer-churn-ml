@@ -3,6 +3,7 @@ Runs sequentially: load → validate → preprocess → feature engineering
 """
 
 import os
+import shutil
 import sys
 import time
 import argparse
@@ -205,6 +206,40 @@ def main(args):
             artifact_path = "model"  # This creates a 'model/' folder in MLflow run artifacts
         )
         print("✅ Model saved to MLflow for serving pipeline")
+
+        # ==========================================
+        # Export latest model for production serving
+        # ==========================================
+
+        print("📦 Exporting production artifacts...")
+        
+        production_dir = os.path.join(project_root, "artifacts", "production_model")
+        
+        # Remove old production model
+        if os.path.exists(production_dir):
+            shutil.rmtree(production_dir)
+            
+        os.makedirs(production_dir, exist_ok = True)
+
+        # Save model
+        mlflow.sklearn.save_model(
+            sk_model = model,
+            path = os.path.join(production_dir, "model")
+            )
+
+        # Copy preprocessing.pkl
+        shutil.copy(
+            os.path.join(artifacts_dir, "preprocessing.pkl"),
+            os.path.join(production_dir, "preprocessing.pkl")
+            )
+
+        # Copy feature_columns.json
+        shutil.copy(
+            os.path.join(artifacts_dir, "feature_columns.json"),
+            os.path.join(production_dir, "feature_columns.json")
+            )
+
+        print("✅ Production artifacts exported successfully!")
 
         # === Final Performance Summary ===
         print(f"\n⏱️  Performance Summary:")
