@@ -32,6 +32,9 @@ def main():
     # 3. Build Features
     print("\n[3] Building features...")
     df_features = build_features(df_clean, target_col = TARGET_COL)
+    os.makedirs("./data/features", exist_ok = True)
+    df_features.to_csv("./data/features/telco_churn_features.csv", index = False)
+    print("✅ Saved feature-engineered dataset.")
     print(f"Data after feature engineering. Shape: {df_features.shape}")
     print(df_features.head(3))
 

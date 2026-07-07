@@ -5,7 +5,7 @@ import optuna
 
 print("=== Phase 2: Modeling with XGBoost ===")
 
-df = pd.read_csv("data/processed/telco_churn_processed.csv")
+df = pd.read_csv("./data/features/telco_churn_features.csv")
 
 # target must be numeric 0/1
 if df["Churn"].dtype == "object":
