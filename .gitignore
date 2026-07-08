@@ -1,22 +1,26 @@
-# venvs
+# Virtual environments
 .venv/
 venv/
 env/
 
-# OS cruft
+# macOS
 .DS_Store
 
-# Python cache
-__pycache__/
+# Python
+_pycache_/
 *.py[cod]
 *.pyo
 
-# Big artifacts we don't want in git
+# MLflow
 mlruns/
-artifacts/
+
+# Ignore raw and processed data
 data/raw/
 data/processed/
 
-# BUT keep our bundled serving model in the repo
-!src/serving/model/
-!src/serving/model/**
+# Ignore all artifacts...
+artifacts/*
+
+# ...except the production model folder and everything inside it
+!artifacts/production_model/
+!artifacts/production_model/**

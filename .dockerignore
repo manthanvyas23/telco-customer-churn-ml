@@ -1,0 +1,10 @@
+.git
+.github
+.venv
+_pycache_
+.ipynb_checkpoints
+notebooks
+tests
+*.pyc
+*.pyo
+*.DS_Store
